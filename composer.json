@@ -1,0 +1,11 @@
+{
+    "name": "association/animal",
+    "description": "association ^^",
+    "autoload": {
+        "psr-4": {
+            "App\\":"src/",
+            "Core\\": "Core/"
+        }
+    },
+    "require": {}
+}
