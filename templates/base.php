@@ -10,30 +10,10 @@
 </head>
 <body>
     <header></header>
- 
-
-
-        <main class="container">
-        <h1 class="text-center">Nos catégories</h1>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($categorie as $category): ?>
-                    <tr>
-                        <td><?= $category->id ?></td>
-                        <td><?= $category->nom ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <main class="container">
+        <!-- Ajouter contenu de main -->
+        <?= $content ?>
     </main>
-
-
     <footer></footer>
 </body>
 </html>
