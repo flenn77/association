@@ -9,16 +9,21 @@ use App\Manager\PostManager;
 define("ROOT", __DIR__);
 require ROOT. "/vendor/autoload.php";
 
-// Charge de fausses données en BDD pour les tests
-// (new AppFixtures)->load();
-// echo "Les fixtures sont chargées";
 
-// Affiche notre page de catégories
-// (new UserManager)->getCategories();
-// (new PostManager)->getPosts();
-(new AnimalController)->index();
-// (new UserController)->show();
 
+if (isset($_GET['page']) && !empty($_GET['page'])){
+    switch ($_GET['page']) {
+        case 'users':
+            (new UserController)->index();
+            break;
+        case 'animals':
+            (new AnimalController)->index();
+                break;
+        default:
+        (new UserController)->index();
+            break;
+    }
+}
 
 
 
