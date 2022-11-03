@@ -29,5 +29,12 @@ class AnimalController extends DefaultController{
         ]);
     }
 
+    public function detail()
+    {
+        
+        $this->render("animal/detail", [
+            'animals' => $this->model->findAll()
+        ]);
+    }
     
 }

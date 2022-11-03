@@ -11,12 +11,7 @@
 </head>
 
 <body>
-
-
-
-
     <header>
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="?page=users">Users</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,29 +19,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-
                     <li class="nav-item">
                         <a class="nav-link" href="?page=animals">Animals</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=users">Users</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=detail">detail</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-
-
-
     </header>
-
-
-
 
     <main class="container">
         <!-- Ajouter contenu de main -->
         <?= $content ?>
     </main>
+
     <footer></footer>
 </body>
 
