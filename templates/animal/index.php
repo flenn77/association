@@ -1,28 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="../../../../favicon.ico">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
-  <title>Album example for Bootstrap</title>
-
-  <!-- Bootstrap core CSS -->
-  <!-- <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-</head>
-
-<body>
-
-  <header>
+<header>
     <nav class="navbar navbar-dark bg-primary">
 
 
@@ -51,12 +27,12 @@
   </header>
 
 
-  
+
   <main role="main">
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading">Album examgfffffffffffffffffffple</h1>
+        <h1 class="jumbotron-heading">association</h1>
         <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
         <p>
           <a href="#" class="btn btn-primary my-2">Main call to action</a>
@@ -71,21 +47,17 @@
         <div class="row">
 
 
-
-
-
-
           <div class="container">
             <div class="row">
-              <?php foreach ($categorie as $category) : ?>
+              <?php foreach ($animals as $animal) : ?>
                 <div class="col-md-4">
                   <div class="card mb-4 box-shadow">
-                    <p class="card-text "><?= '<img src="data:image;base64,' . base64_encode($category->imageAnimal) . '" style="width:200px;" height="200px" >'; ?>
                     <div class="card-body">
-                      <p class="card-text"><?= $category->surnomAnimal ?></p>
-                      <p class="card-text"><?= $category->especeAnimal ?></p>
-                      <p class="card-text"><?= $category->raceAnimal ?></p>
-                      <p class="card-text"><?= $category->ageAnimal ?></p>
+                      <p class="card-text"><?= $animal->getSurnomAnimal() ?></p>
+                      <p class="card-text"><?= $animal->getEspeceAnimal() ?></p>                
+                      <p class="card-text"><?= $animal->getRaceAnimal() ?></p>
+                      <p class="card-text"><?= $animal->getAgeAnimal() ?></p>
+                      <p class="card-text"><?= $animal->getCouleurAnimal() ?></p>
 
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
@@ -113,7 +85,3 @@
       <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
     </div>
   </footer>
-
-</body>
-
-</html>

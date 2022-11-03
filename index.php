@@ -1,7 +1,10 @@
 <?php
 
+use App\Controller\AnimalController;
+use App\Controller\UserController;
 use App\Fixtures\AppFixtures;
-use App\Manager\CategoryManager;
+use App\Manager\UserManager;
+use App\Manager\PostManager;
 
 define("ROOT", __DIR__);
 require ROOT. "/vendor/autoload.php";
@@ -11,7 +14,10 @@ require ROOT. "/vendor/autoload.php";
 // echo "Les fixtures sont chargées";
 
 // Affiche notre page de catégories
-(new CategoryManager)->getCategories();
+// (new UserManager)->getCategories();
+// (new PostManager)->getPosts();
+(new AnimalController)->index();
+// (new UserController)->show();
 
 
 
