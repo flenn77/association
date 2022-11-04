@@ -5,19 +5,6 @@ class DefaultController {
 
     protected function render(string $viewPath, array $parameters = [])
     {
-        // $parameters = [
-        //     'categories' => [
-        //         // categories
-        //     ],
-        //     'posts' => [],
-        //     'users' => []
-        //     ];
-        
-        //     foreach ($parameters as $key => $value) {
-        //        $$key = $value;
-        //        $categories = $value;
-        //     }
-
         // Créé une mémoire tampon
         ob_start();
             // extract() permet de générer des variables à partir des données d'un tableau associatif,

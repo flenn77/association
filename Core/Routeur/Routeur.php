@@ -3,31 +3,38 @@
 namespace Core\Routeur;
 
 use App\Controller\HomeController;
-use App\Controller\PostController;
+// use App\Controller\ProduitController;
+use App\Controller\UserController;
 use App\Controller\ErrorController;
-use App\Controller\CategoryController;
+use App\Controller\AnimalController;
 
-class Routeur
-{
-    public static function routes()
+class Routeur {
+
+    public static function pages()
     {
         try {
             if (isset($_GET['page']) && !empty($_GET['page'])) {
                 switch ($_GET['page']) {
                     case 'animal':
-                        (new UserController)->index();
+                        (new AnimalController)->index();
                         break;
                     case 'infoanimal':
-                        (new UserController)->info();
+                        (new AnimalController)->info();
                         break;
                     case 'infoadoption':
-                        (new UserController)->add();
+                        (new AnimalController)->add();
                         break;
                     case 'produits':
                         (new ProduitController)->index();
                         break;
                     case 'infoproduits':
                         (new ProduitController)->info();
+                        break;
+                    case 'user':
+                        (new UserController)->index();
+                        break;
+                    case 'infouser':
+                        (new UserController)->info();
                         break;
                     case 'connexion':
                         (new UserController)->login();
