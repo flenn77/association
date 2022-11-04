@@ -25,7 +25,7 @@ class UserController extends DefaultController{
     {
         // $categories = $this->model->findAll();
         // require_once ROOT."/templates/User/index.php";
-        $this->render("user/index", [
+        $this->render("user/registration", [
             'users' => $this->model->findAll()
         ]);
     }
