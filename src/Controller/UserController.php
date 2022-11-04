@@ -25,21 +25,37 @@ class UserController extends DefaultController{
     {
         // $categories = $this->model->findAll();
         // require_once ROOT."/templates/User/index.php";
-        $this->render("user/registration", [
+        $this->render("user/index", [
             'users' => $this->model->findAll()
         ]);
     }
 
     public function login() {
-        $this->render("user/login", [
-
-        ]);
+        $this->render("user/login");
     }
 
     public function loginPost() {
-        $this->render("user/login", [
-            
-        ]);
+        
+        $this->model->getByEmail($_POST['mail']);
+
     }
     
+    public function register() {
+        $data = [
+            'prenom' => trim($_POST['prenom']),
+            'nom' => trim($_POST['nom']),
+            'radioSexe' => trim($_POST['prenom']),
+            'adresse' => trim($_POST['adresse']),
+            'codePostal' => trim($_POST['codePostal']),
+            'ville' => trim($_POST['ville']),
+            'tel' => trim($_POST['tel']),
+            'mail' => trim($_POST['mail']),
+            'password' => trim($_POST['password']),
+            'passwordRpt' => trim($_POST['passwordRpt']),
+        ];
+
+        
+
+        $this->render("user/registration");
+    }
 }
