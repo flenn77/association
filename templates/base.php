@@ -25,9 +25,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?page=users">Users</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=detail">detail</a>
-                    </li>
                 </ul>
             </div>
         </nav>

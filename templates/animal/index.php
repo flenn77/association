@@ -30,7 +30,7 @@
                     <p class="card-text"><?= $animal->getCouleurAnimal() ?></p>
                   </div>
                   <div class="card-footer">
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="?page=detailAnimal&id=<?=$user->getId()?>" class="btn btn-primary my-2">Main call to action</a></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="?page=detailAnimal&id=<?=$animal->getId()?>" class="btn btn-primary my-2">Main call to action</a></button>
                     </div>
                 </div>
               </div>
