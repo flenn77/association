@@ -20,12 +20,18 @@ if (isset($_GET['page']) && !empty($_GET['page'])){
             (new AnimalController)->index();
             break;
         case 'detail':
-            (new AnimalController)->detail();
+            (new UserController)->show();
+            break;
+        case 'detailAnimal':
+            (new AnimalController)->show();
             break;
         default:
             (new UserController)->index();
             break;
     }
+    
+}else{
+    (new UserController)->index();
 }
 
 

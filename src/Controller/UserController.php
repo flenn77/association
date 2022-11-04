@@ -30,5 +30,22 @@ class UserController extends DefaultController{
         ]);
     }
 
+
+    /**
+     * Page affichant une catégorie en fonction de son id
+     *
+     * @return void
+     */
+    public function show()
+    {
+        if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
+            $id = intval($_GET['id']);
+        }
+        $user = $this->model->find($id);
+
+        $this->render("user/detail", [
+            'users' => $user
+        ]);
+    }
     
 }

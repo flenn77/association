@@ -108,8 +108,6 @@ class Database {
         } else {
             $data = $query->fetchAll();
         }
-        //var_dump($data);
-
         // // Je récupère les données de la table catégorie
         // // SELECT * FROM category
         // $data = [
