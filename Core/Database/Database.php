@@ -36,7 +36,14 @@ class Database {
      *
      * @var \PDO|null
      */
-    private ?\PDO $pdo;
+    protected ?\PDO $pdo;
+
+    /**
+     * Nom de l'entité associée au chargement des données
+     *
+     * @var string
+     */
+    protected string $entity;
 
     /**
      * Exécute la connexion à la BDD
@@ -77,12 +84,50 @@ class Database {
     }
 
     /**
-     * Retourne la connexion à la BDD
+     * Retourne l'instance de connexion à la BDD
      *
      * @return \PDO|null
      */
     public function getPdo(): ?\PDO
     {
         return $this->pdo;
+    }
+
+    /**
+     * Récupère les données en BDD
+     *
+     * @param string $stmt requête à exécuter
+     * @param boolean $one définit si une seule donnée est à récupérer ou non
+     * @return array<object>|object
+     */
+    protected function getData (string $stmt, bool $one = false): array|object
+    {
+        $query = $this->pdo->query($stmt, \PDO::FETCH_CLASS, "App\Entity\\". $this->entity);
+        if ($one) {
+            $data = $query->fetch();
+        } else {
+            $data = $query->fetchAll();
+        }
+        //var_dump($data);
+
+        // // Je récupère les données de la table catégorie
+        // // SELECT * FROM category
+        // $data = [
+        //     0 => [
+        //         'id' => 1,
+        //         'name' => "lorem ipsum"
+        //     ]
+        // ];
+        // // Les données doivent être associée à la classe App\Entity\Category
+        // // La class Category a 2 properties => $id et $name =>
+        // // $category[0] => $id = $data[0]['id']
+        // // $category[0] => $name = $data[0]['name']
+        // $data = [
+        //     new Categorie()
+        // ];
+
+        return $data ? 
+            $data : 
+            throw new \Exception("Aucune donnée n'a été trouvée");
     }
 }

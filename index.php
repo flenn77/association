@@ -1,19 +1,35 @@
 <?php
 
+use App\Controller\AnimalController;
+use App\Controller\UserController;
 use App\Fixtures\AppFixtures;
-use App\Manager\CategoryManager;
+use App\Manager\UserManager;
+use App\Manager\PostManager;
 
 define("ROOT", __DIR__);
 require ROOT. "/vendor/autoload.php";
 
-// Charge de fausses données en BDD pour les tests
-// (new AppFixtures)->load();
-// echo "Les fixtures sont chargées";
-
-// Affiche notre page de catégories
-(new CategoryManager)->getCategories();
 
 
+if (isset($_GET['page']) && !empty($_GET['page'])){
+    switch ($_GET['page']) {
+        case 'users':
+            (new UserController)->index();
+            break;
+        case 'animals':
+            (new AnimalController)->index();
+            break;
+        case 'detail':
+            (new AnimalController)->detail();
+            break;
+        default:
+            (new UserController)->index();
+            break;
+    }
+}
+else{
+    (new UserController)->index();
+}
 
 
 
