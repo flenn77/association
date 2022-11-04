@@ -71,5 +71,27 @@ class User
     {
         return $this->codePostal;
     }
-    
+
+    public function setNom(string $nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function setPrenom(string $prenom)
+    {
+        $this->prenom = $prenom;
+    }
+
+    public function setAdresse(string $adresse)
+    {
+        $this->adresse = $adresse;
+    }
+
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+    }
+
 }

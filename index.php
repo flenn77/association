@@ -7,6 +7,7 @@ use App\Manager\UserManager;
 use App\Manager\PostManager;
 
 define("ROOT", __DIR__);
+define("CSS", dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR);
 require ROOT. "/vendor/autoload.php";
 
 // Charge de fausses données en BDD pour les tests
@@ -16,8 +17,8 @@ require ROOT. "/vendor/autoload.php";
 // Affiche notre page de catégories
 // (new UserManager)->getCategories();
 // (new PostManager)->getPosts();
-(new AnimalController)->index();
-// (new UserController)->show();
+// (new AnimalController)->index();
+(new UserController)->index();
 
 
 

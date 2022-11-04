@@ -30,5 +30,16 @@ class UserController extends DefaultController{
         ]);
     }
 
+    public function login() {
+        $this->render("user/login", [
+
+        ]);
+    }
+
+    public function loginPost() {
+        $this->render("user/login", [
+            
+        ]);
+    }
     
 }
