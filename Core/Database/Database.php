@@ -128,4 +128,10 @@ class Database {
             $data : 
             throw new \Exception("Aucune donnée n'a été trouvée");
     }
+
+    protected function rowCount(string $stmt) {
+        $result = $this->pdo->query($stmt);
+
+        return $result->rowCount();
+    }
 }

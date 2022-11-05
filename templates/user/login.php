@@ -1,3 +1,9 @@
+<?php
+	if(!isset($_SESSION)) {
+		session_start();
+	}
+?>
+
 <form class="form-signin" action="?page=loginPost" method="POST">
 	<img class="mb-4" src="https://i.pinimg.com/736x/32/6d/d0/326dd0cbb4adf96e7c8e24e4efe9ecb3.jpg" alt="" width="72" height="72" />
 	<h1 class="h3 mb-3 font-weight-normal">Connexion :</h1>

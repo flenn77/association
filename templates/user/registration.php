@@ -1,12 +1,18 @@
+<?php
+
+?>
+
+
+
 <form class="form-signin" method="POST">
 	<img class="mb-4" src="https://i.pinimg.com/736x/32/6d/d0/326dd0cbb4adf96e7c8e24e4efe9ecb3.jpg" alt="" width="72" height="72" />
 	<h1 class="h3 mb-3 font-weight-normal">Inscription :</h1>
 
     <label for="inputPrenom" class="visually-hidden">Prénom</label>
-	<input type="text" id="inputPrenom" name="prenom" class="form-control" placeholder="Prénom" required />
+	<input type="text" id="inputPrenom" name="prenom" class="form-control" placeholder="Prénom" />
 	
 	<label for="inputNom" class="visually-hidden">Nom</label>
-	<input type="text" id="inputNom" name="nom" class="form-control" placeholder="Nom" required />
+	<input type="text" id="inputNom" name="nom" class="form-control" placeholder="Nom" />
 
     <p>Sexe</p>
     <div class="row">
@@ -21,25 +27,25 @@
     </div>
 
 	<label for="inputAdresse" class="visually-hidden">Adresse</label>
-	<input type="text" id="inputAdresse" name="adresse" class="form-control" placeholder="Adresse" required />
+	<input type="text" id="inputAdresse" name="adresse" class="form-control" placeholder="Adresse" />
 	
 	<label for="inputCodePostal" class="visually-hidden">Code Postal</label>
-	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" min="0" required />
+	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" min="0" />
 
     <label for="inputVille" class="visually-hidden">Ville</label>
-	<input type="text" id="inputVille" name="ville" class="form-control" placeholder="Ville" required />
+	<input type="text" id="inputVille" name="ville" class="form-control" placeholder="Ville" />
 
     <label for="inputTel" class="visually-hidden">Numéro de téléphone</label>
-	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" pattern="[0-9]{10}" required />
+	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" pattern="[0-9]{10}" />
 
     <label for="inputEmail" class="visually-hidden">Adresse mail</label>
-	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" required autofocus />
+	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" autofocus />
 	
 	<label for="inputPassword" class="visually-hidden">Mot de passe</label>
-	<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required />
+	<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" />
 
     <label for="inputPasswordRpt" class="visually-hidden">Confirmer mot de passe</label>
-	<input type="password" id="inputPasswordRpt" name="passwordRpt" class="form-control" placeholder="Confirmer mot de passe" required />
+	<input type="password" id="inputPasswordRpt" name="passwordRpt" class="form-control" placeholder="Confirmer mot de passe" />
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
 

@@ -18,8 +18,12 @@ class DefaultController {
         require_once ROOT . "/templates/base.php";
     }
 
-    protected function sendMail() {
-        
+    protected function verifDataRegister($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+
+        return $data;
     }
 
 }
