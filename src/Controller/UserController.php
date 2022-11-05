@@ -98,14 +98,15 @@ class UserController extends DefaultController{
 
             var_dump($_POST);
 
-
+            header("Location: index.php?page=connexion");
+            exit();
         } else {
             $this->render("user/registration");
         }
 
     }
 
-    public function verifRegister() {
+    // public function verifRegister() {
         
-    }
+    // }
 }
