@@ -8,8 +8,6 @@ use Core\Controller\DefaultController;
 class UserController extends DefaultController{
 
     private UserModel $model;
-
-    private int $codeverif;
     
     /**
      * Instancie les objets dont on a besoin dans toutes nos méthodes
@@ -17,7 +15,6 @@ class UserController extends DefaultController{
     public function __construct()
     {
         $this->model = new UserModel;
-        $this->codeverif = null;
     }
 
     /**
@@ -92,8 +89,7 @@ class UserController extends DefaultController{
             $user->setMail(htmlspecialchars($_POST['mail']));
             $user->setPassword(htmlspecialchars($_POST['password']));
             $user->setStatut("user");
-
-            $this->verifmail();
+            $user->setVerifMail(false);
             
             // $this->model->save($user);
         }
@@ -105,11 +101,11 @@ class UserController extends DefaultController{
     {
         if (is_null($this->codeverif)){
             // $this->codeverif = fonction pour générer nombre aléatoire à 4-5 chiffres
-            // $this->sendMail();
+            // $this->sendMail(string Message avec le code à envoyer);
         }
         
         // if (!empty($_POST) && isset($_POST['codeverif'])){       
-        //     return
+        //     if ($_POST['codeverif'] == )
         // }
 
         $this->render("user/verifmail", [
