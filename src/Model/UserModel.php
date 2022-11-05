@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
 
+use App\Entity\User;
 use Core\Model\DefaultModel;
 
 /**
@@ -18,5 +19,13 @@ class UserModel extends DefaultModel {
     {
         $stmt = "SELECT * FROM " . $this->table . " WHERE mail = $email";
         return $this->getData($stmt, true);
+    }
+
+    public function save(User $user)
+    {
+        var_dump($user());
+        $stmt = "INSERT INTO user (nom, prenom, sexe, adresse, codePostal, ville, tel, mail, password, statut) VALUES (:nom, :prenom, :sexe, :adresse, :codePostal, :ville, :tel, :mail, :password, 'user')";
+        $prepare = $this->pdo->prepare($stmt);
+        $prepare->execute($user());
     }
 }

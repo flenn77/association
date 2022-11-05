@@ -24,7 +24,7 @@
 	<input type="text" id="inputAdresse" name="adresse" class="form-control" placeholder="Adresse" required />
 	
 	<label for="inputCodePostal" class="visually-hidden">Code Postal</label>
-	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" required />
+	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" min="0" required />
 
     <label for="inputVille" class="visually-hidden">Ville</label>
 	<input type="text" id="inputVille" name="ville" class="form-control" placeholder="Ville" required />

@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class User
+use Core\Entity\DefaultEntity;
+
+class User extends DefaultEntity
 {
 
     /**
@@ -29,6 +31,8 @@ class User
      */
     private string $prenom;
 
+    private string $sexe;
+
     /**
      * Nom de la catégorie
      * UNIQUE string 65
@@ -43,9 +47,15 @@ class User
      *
      * @var integer
      */
-    private string $codePostal;
+    private int $codePostal;
 
+    private string $ville;
 
+    private string $tel;
+
+    private string $mail;
+
+    private string $password;
 
     public function getId(): int
     {
@@ -94,4 +104,138 @@ class User
         $this->codePostal = $codePostal;
     }
 
+
+    /**
+     * Get the value of ville
+     */ 
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set the value of ville
+     *
+     * @return  self
+     */ 
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tel
+     */ 
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * Set the value of tel
+     *
+     * @return  self
+     */ 
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of mail
+     */ 
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set the value of mail
+     *
+     * @return  self
+     */ 
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sexe
+     */ 
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * Set the value of sexe
+     *
+     * @return  self
+     */ 
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    public function hydrateUser(array $data)
+    {
+        if (isset($data['id'])) {
+            $this->id = $data['id'];
+        }
+        if (isset($data['nom'])) {
+            $this->nom = $data['nom'];
+        }
+        if (isset($data['prenom'])) {
+            $this->prenom = $data['prenom'];
+        }
+        if (isset($data['sexe'])) {
+            $this->sexe = $data['sexe'];
+        }
+        if (isset($data['adresse'])) {
+            $this->adresse = $data['adresse'];
+        }
+        if (isset($data['codePostal'])) {
+            $this->codePostal = $data['codePostal'];
+        }
+        if (isset($data['ville'])) {
+            $this->ville = $data['ville'];
+        }
+        if (isset($data['tel'])) {
+            $this->tel = $data['tel'];
+        }
+        if (isset($data['mail'])) {
+            $this->mail = $data['mail'];
+        }
+        if (isset($data['password'])) {
+            $this->password = $data['password'];
+        }
+    }
 }

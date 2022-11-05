@@ -8,17 +8,6 @@ class Routeur
 {
     public static function routes()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            switch ($_POST['type']) {
-                case 'register':
-                    (new UserController)->register();
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            }
-        }
         if (isset($_GET['page']) && !empty($_GET['page'])) {
             switch ($_GET['page']) {
                 case 'login':
@@ -26,6 +15,9 @@ class Routeur
                     break;
                 case 'loginPost':
                     (new UserController)->loginPost();
+                    break;
+                case 'register':
+                    (new UserController)->addUser();
                     break;
                 // case 'register':
                 //     (new UserController)->register();
