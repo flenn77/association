@@ -3,10 +3,12 @@
 namespace Core\Routeur;
 
 use App\Controller\HomeController;
-// use App\Controller\ProduitController;
 use App\Controller\UserController;
 use App\Controller\ErrorController;
 use App\Controller\AnimalController;
+use App\Controller\ProduitController;
+use App\Controller\DonationController;
+use App\Controller\ReservationController;
 
 class Routeur {
 
@@ -24,10 +26,10 @@ class Routeur {
                     case 'infoadoption':
                         (new AnimalController)->add();
                         break;
-                    case 'produits':
+                    case 'produit':
                         (new ProduitController)->index();
                         break;
-                    case 'infoproduits':
+                    case 'infoproduit':
                         (new ProduitController)->info();
                         break;
                     case 'user':
@@ -42,8 +44,11 @@ class Routeur {
                     case 'inscription':
                         (new UserController)->register();
                         break;
-                    case 'donations':
+                    case 'donation':
                         (new DonationController)->index();
+                        break;
+                    case 'reservation':
+                        (new ReservationController)->index();
                         break;
 
                     default:

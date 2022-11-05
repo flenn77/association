@@ -24,7 +24,7 @@
                     <p class="card-text"><?= $user->getAdresse() ?></p>
                     <p class="card-text"><?= $user->getCodePostal() ?></p>
                     <div class="card-footer">
-                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="?page=detail&id=<?=$user->getId()?>" class="btn btn-primary my-2">Main call to action</a></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><a href="?page=infouser&id=<?=$user->getId()?>" class="btn btn-primary my-2">Main call to action</a></button>
                     </div>
                   </div>
                 </div>

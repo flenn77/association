@@ -33,14 +33,14 @@ class AnimalController extends DefaultController{
      *
      * @return void
      */
-    public function show()
+    public function info()
     {
         if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
             $id = intval($_GET['id']);
         }
         $animal = $this->model->find($id);
 
-        $this->render("animal/detailAnimal", [
+        $this->render("animal/detail", [
             'animals' => $animal
         ]);
     }

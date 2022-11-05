@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -24,6 +24,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=user">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=produit">Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=donation">Donations</a>
                     </li>
                 </ul>
             </div>
