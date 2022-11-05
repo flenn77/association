@@ -11,7 +11,7 @@ class Animal
      *
      * @var integer
      */
-    private int $idAnimal;
+    private int $id;
 
     /**
      * Nom de la catégorie
@@ -91,9 +91,9 @@ class Animal
 
 
 
-    public function getIdAnimal(): int
+    public function getId(): int
     {
-        return $this->idAnimal;
+        return $this->id;
     }
 
     public function getSurnomAnimal(): string

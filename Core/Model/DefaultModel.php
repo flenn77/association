@@ -26,7 +26,7 @@ class DefaultModel extends Database {
      */
     public function find(int $id): object
     {
-        $stmt = "SELECT * FROM ". $this->table . "WHERE id = $id"; 
+        $stmt = "SELECT * FROM " . $this->table . " WHERE id = $id"; 
         return $this->getData($stmt, true);
     }
 

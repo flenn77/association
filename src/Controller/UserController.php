@@ -35,10 +35,25 @@ class UserController extends DefaultController{
         $this->render("user/login");
     }
 
-    public function loginPost() {
-        
+    public function loginPost() {    
         $this->model->getByEmail($_POST['mail']);
+    }
+    
+    /**
+     * Page affichant une catégorie en fonction de son id
+     *
+     * @return void
+     */
+    public function info()
+    {
+        if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
+            $id = intval($_GET['id']);
+        }
+        $user = $this->model->find($id);
 
+        $this->render("user/detail", [
+            'users' => $user
+        ]);
     }
     
     public function register() {

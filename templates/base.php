@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link href="<?= CSS . "navbar-top-fixed.css"?>" rel="stylesheet" />        
     <title>De A à Zèbre</title>
 </head>
+<<<<<<< HEAD
 <body class="text-center">
     <header>
         <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -36,10 +38,34 @@
         </div>
         </nav> -->
     </header>
+=======
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="?page= ">Accueil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=animal">Animals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=user">Users</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+>>>>>>> origin/denis
     <main class="container">
         <!-- Ajouter contenu de main -->
         <?= $content ?>
     </main>
+<<<<<<< HEAD
     <footer>
         <!-- <div class="container">
         <p class="float-right">
@@ -49,5 +75,10 @@
         <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
         </div> -->
     </footer>
+=======
+
+    <footer></footer>
+>>>>>>> origin/denis
 </body>
+
 </html>

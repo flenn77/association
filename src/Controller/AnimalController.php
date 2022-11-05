@@ -23,11 +23,26 @@ class AnimalController extends DefaultController{
      */
     public function index()
     {
-        
         $this->render("animal/index", [
             'animals' => $this->model->findAll()
         ]);
     }
 
+  /**
+     * Page affichant une catégorie en fonction de son id
+     *
+     * @return void
+     */
+    public function info()
+    {
+        if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
+            $id = intval($_GET['id']);
+        }
+        $animal = $this->model->find($id);
+
+        $this->render("animal/detailAnimal", [
+            'animals' => $animal
+        ]);
+    }
     
 }
