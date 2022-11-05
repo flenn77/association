@@ -3,10 +3,12 @@
 namespace Core\Routeur;
 
 use App\Controller\HomeController;
-// use App\Controller\ProduitController;
 use App\Controller\UserController;
 use App\Controller\ErrorController;
 use App\Controller\AnimalController;
+use App\Controller\ProduitController;
+use App\Controller\DonationController;
+use App\Controller\ReservationController;
 
 class Routeur {
 
@@ -21,15 +23,15 @@ class Routeur {
                     case 'infoanimal':
                         (new AnimalController)->info();
                         break;
-                    // case 'infoadoption':
-                    //     (new AnimalController)->add();
-                    //     break;
-                    // case 'produits':
-                    //     (new ProduitController)->index();
-                    //     break;
-                    // case 'infoproduits':
-                    //     (new ProduitController)->info();
-                    //     break;
+                    case 'infoadoption':
+                        (new AnimalController)->add();
+                        break;
+                    case 'produit':
+                        (new ProduitController)->index();
+                        break;
+                    case 'infoproduit':
+                        (new ProduitController)->info();
+                        break;
                     case 'user':
                         (new UserController)->index();
                         break;
@@ -42,9 +44,12 @@ class Routeur {
                     case 'inscription':
                         (new UserController)->register();
                         break;
-                    // case 'donations':
-                    //     (new DonationController)->index();
-                    //     break;
+                    case 'donation':
+                        (new DonationController)->index();
+                        break;
+                    case 'reservation':
+                        (new ReservationController)->index();
+                        break;
 
                     default:
                         (new ErrorController)->error404();

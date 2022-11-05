@@ -57,6 +57,8 @@ class User extends DefaultEntity
 
     private string $password;
 
+    private string $statut;
+
     public function getId(): int
     {
         return $this->id;
@@ -237,5 +239,25 @@ class User extends DefaultEntity
         if (isset($data['password'])) {
             $this->password = $data['password'];
         }
+    }
+
+    /**
+     * Get the value of statut
+     */ 
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set the value of statut
+     *
+     * @return  self
+     */ 
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

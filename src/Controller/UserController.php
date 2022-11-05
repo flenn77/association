@@ -56,45 +56,26 @@ class UserController extends DefaultController{
         ]);
     }
     
-    public function register() {
-        $data = [
-            'prenom' => trim($_POST['prenom']),
-            'nom' => trim($_POST['nom']),
-            'radioSexe' => trim($_POST['prenom']),
-            'adresse' => trim($_POST['adresse']),
-            'codePostal' => trim($_POST['codePostal']),
-            'ville' => trim($_POST['ville']),
-            'tel' => trim($_POST['tel']),
-            'mail' => trim($_POST['mail']),
-            'password' => trim($_POST['password']),
-            'passwordRpt' => trim($_POST['passwordRpt']),
-        ];
+    // public function register() {
+    //     $data = [
+    //         'prenom' => trim($_POST['prenom']),
+    //         'nom' => trim($_POST['nom']),
+    //         'radioSexe' => trim($_POST['prenom']),
+    //         'adresse' => trim($_POST['adresse']),
+    //         'codePostal' => trim($_POST['codePostal']),
+    //         'ville' => trim($_POST['ville']),
+    //         'tel' => trim($_POST['tel']),
+    //         'mail' => trim($_POST['mail']),
+    //         'password' => trim($_POST['password']),
+    //         'passwordRpt' => trim($_POST['passwordRpt']),
+    //     ];
 
-        var_dump($data);
+    //     var_dump($data);
 
-        $this->render("user/registration");
-    }
+    //     $this->render("user/registration");
+    // }
 
-    public function registerPost() {
-        $data = [
-            'prenom' => trim($_POST['prenom']),
-            'nom' => trim($_POST['nom']),
-            'radioSexe' => trim($_POST['prenom']),
-            'adresse' => trim($_POST['adresse']),
-            'codePostal' => trim($_POST['codePostal']),
-            'ville' => trim($_POST['ville']),
-            'tel' => trim($_POST['tel']),
-            'mail' => trim($_POST['mail']),
-            'password' => trim($_POST['password']),
-            'passwordRpt' => trim($_POST['passwordRpt']),
-        ];
-
-        var_dump($data);
-
-        $this->render("user/registration");
-    }
-
-    public function addUser()
+    public function register()
     {
         if (!empty($_POST) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['radioSexe']) && isset($_POST['adresse']) && isset($_POST['codePostal']) && isset($_POST['ville']) && isset($_POST['tel']) && isset($_POST['mail']) && isset($_POST['password'])) {
             $user= new User;
@@ -107,6 +88,8 @@ class UserController extends DefaultController{
             $user->setTel(htmlspecialchars($_POST['tel']));
             $user->setMail(htmlspecialchars($_POST['mail']));
             $user->setPassword(htmlspecialchars($_POST['password']));
+            $user->setStatut("user");
+
             
             $this->model->save($user);
         }

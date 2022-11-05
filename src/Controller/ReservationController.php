@@ -3,10 +3,10 @@ namespace App\Controller;
 
 use Core\Controller\DefaultController;
 
-class DonationController extends DefaultController 
+class ReservationController extends DefaultController
 {
     public function index()
     {
-        $this->render('donation/index');
+        $this->render('reservation/index');
     }
 }

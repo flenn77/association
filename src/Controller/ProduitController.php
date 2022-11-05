@@ -1,19 +1,19 @@
 <?php
 namespace App\Controller;
 
-use App\Model\AnimalModel;
+use App\Model\ProduitModel;
 use Core\Controller\DefaultController;
 
-class AnimalController extends DefaultController{
-
-    private AnimalModel $model;
+class ProduitController extends DefaultController
+{
+    private ProduitModel $model;
     
     /**
      * Instancie les objets dont on a besoin dans toutes nos méthodes
      */
     public function __construct()
     {
-        $this->model = new AnimalModel;
+        $this->model = new ProduitModel;
     }
 
     /**
@@ -23,8 +23,8 @@ class AnimalController extends DefaultController{
      */
     public function index()
     {
-        $this->render("animal/index", [
-            'animals' => $this->model->findAll()
+        $this->render("produit/index", [
+            'produits' => $this->model->findAll()
         ]);
     }
 
@@ -38,11 +38,10 @@ class AnimalController extends DefaultController{
         if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
             $id = intval($_GET['id']);
         }
-        $animal = $this->model->find($id);
+        $produit = $this->model->find($id);
 
-        $this->render("animal/detail", [
-            'animals' => $animal
+        $this->render("produit/detail", [
+            'produits' => $produit
         ]);
     }
-    
 }
