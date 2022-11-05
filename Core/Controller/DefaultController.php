@@ -18,4 +18,8 @@ class DefaultController {
         require_once ROOT . "/templates/base.php";
     }
 
+    protected function sendMail() {
+        
+    }
+
 }

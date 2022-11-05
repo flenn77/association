@@ -23,7 +23,7 @@ class UserModel extends DefaultModel {
 
     public function save(User $user)
     {
-        var_dump($user());
+        // var_dump($user());
         $stmt = "INSERT INTO user (nom, prenom, sexe, adresse, codePostal, ville, tel, mail, password, statut) 
                  VALUES (:nom, :prenom, :sexe, :adresse, :codepostal, :ville, :tel, :mail, :password, :statut)";
         $prepare = $this->pdo->prepare($stmt);

@@ -23,9 +23,9 @@ class Routeur {
                     case 'infoanimal':
                         (new AnimalController)->info();
                         break;
-                    case 'infoadoption':
-                        (new AnimalController)->add();
-                        break;
+                    // case 'infoadoption':
+                    //     (new AnimalController)->add();
+                    //     break;
                     case 'produit':
                         (new ProduitController)->index();
                         break;

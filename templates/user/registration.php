@@ -1,4 +1,4 @@
-<form class="form-signin" method="POST">
+<form class="form-signin" action="?page=connexion" method="POST">
 	<img class="mb-4" src="https://i.pinimg.com/736x/32/6d/d0/326dd0cbb4adf96e7c8e24e4efe9ecb3.jpg" alt="" width="72" height="72" />
 	<h1 class="h3 mb-3 font-weight-normal">Inscription :</h1>
 
@@ -30,7 +30,7 @@
 	<input type="text" id="inputVille" name="ville" class="form-control" placeholder="Ville" required />
 
     <label for="inputTel" class="visually-hidden">Numéro de téléphone</label>
-	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" required />
+	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" pattern="[0-9]{10}" required />
 
     <label for="inputEmail" class="visually-hidden">Adresse mail</label>
 	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" required autofocus />
@@ -41,5 +41,6 @@
     <label for="inputPasswordRpt" class="visually-hidden">Confirmer mot de passe</label>
 	<input type="password" id="inputPasswordRpt" name="passwordRpt" class="form-control" placeholder="Confirmer mot de passe" required />
 
-	<button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
+
 </form>

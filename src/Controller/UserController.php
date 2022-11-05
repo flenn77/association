@@ -88,12 +88,24 @@ class UserController extends DefaultController{
             $user->setTel(htmlspecialchars($_POST['tel']));
             $user->setMail(htmlspecialchars($_POST['mail']));
             $user->setPassword(htmlspecialchars($_POST['password']));
+            // password_hash($_POST['password'], PASSWORD_DEFAULT);
             $user->setStatut("user");
 
             
             $this->model->save($user);
+
+            $_POST = null;
+
+            var_dump($_POST);
+
+
+        } else {
+            $this->render("user/registration");
         }
 
-        $this->render("user/registration");
+    }
+
+    public function verifRegister() {
+        
     }
 }
