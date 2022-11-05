@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
 
-class User extends DefaultEntity
+class Donation extends DefaultEntity
 {
 
     /**
@@ -31,8 +31,6 @@ class User extends DefaultEntity
      */
     private string $prenom;
 
-    private string $sexe;
-
     /**
      * Nom de la catégorie
      * UNIQUE string 65
@@ -55,9 +53,8 @@ class User extends DefaultEntity
 
     private string $mail;
 
-    private string $password;
+    private int $montant;
 
-    private string $statut;
 
     public function getId(): int
     {
@@ -109,7 +106,7 @@ class User extends DefaultEntity
 
     /**
      * Get the value of ville
-     */ 
+     */
     public function getVille()
     {
         return $this->ville;
@@ -119,7 +116,7 @@ class User extends DefaultEntity
      * Set the value of ville
      *
      * @return  self
-     */ 
+     */
     public function setVille($ville)
     {
         $this->ville = $ville;
@@ -129,7 +126,7 @@ class User extends DefaultEntity
 
     /**
      * Get the value of tel
-     */ 
+     */
     public function getTel()
     {
         return $this->tel;
@@ -139,7 +136,7 @@ class User extends DefaultEntity
      * Set the value of tel
      *
      * @return  self
-     */ 
+     */
     public function setTel($tel)
     {
         $this->tel = $tel;
@@ -149,7 +146,7 @@ class User extends DefaultEntity
 
     /**
      * Get the value of mail
-     */ 
+     */
     public function getMail()
     {
         return $this->mail;
@@ -159,7 +156,7 @@ class User extends DefaultEntity
      * Set the value of mail
      *
      * @return  self
-     */ 
+     */
     public function setMail($mail)
     {
         $this->mail = $mail;
@@ -167,46 +164,28 @@ class User extends DefaultEntity
         return $this;
     }
 
+
     /**
-     * Get the value of password
-     */ 
-    public function getPassword()
+     * Get the value of montant
+     */
+    public function getMontant()
     {
-        return $this->password;
+        return $this->montant;
     }
 
     /**
-     * Set the value of password
+     * Set the value of montant
      *
      * @return  self
-     */ 
-    public function setPassword($password)
+     */
+    public function setMontant($montant)
     {
-        $this->password = $password;
+        $this->montant = $montant;
 
         return $this;
     }
 
-    /**
-     * Get the value of sexe
-     */ 
-    public function getSexe()
-    {
-        return $this->sexe;
-    }
-
-    /**
-     * Set the value of sexe
-     *
-     * @return  self
-     */ 
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
+    
     public function hydrateUser(array $data)
     {
         if (isset($data['id'])) {
@@ -217,10 +196,7 @@ class User extends DefaultEntity
         }
         if (isset($data['prenom'])) {
             $this->prenom = $data['prenom'];
-        }
-        if (isset($data['sexe'])) {
-            $this->sexe = $data['sexe'];
-        }
+        }        
         if (isset($data['adresse'])) {
             $this->adresse = $data['adresse'];
         }
@@ -236,28 +212,12 @@ class User extends DefaultEntity
         if (isset($data['mail'])) {
             $this->mail = $data['mail'];
         }
-        if (isset($data['password'])) {
-            $this->password = $data['password'];
+        if (isset($data['montant'])) {
+            $this->montant = $data['montant'];
         }
+        
     }
 
-    /**
-     * Get the value of statut
-     */ 
-    public function getStatut()
-    {
-        return $this->statut;
-    }
 
-    /**
-     * Set the value of statut
-     *
-     * @return  self
-     */ 
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
 
-        return $this;
-    }
 }
