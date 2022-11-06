@@ -9,7 +9,29 @@ use Core\Controller\DefaultController;
 class UserController extends DefaultController {
 
     private UserModel $model;
-    
+
+    public string $prenom = "";
+    public string $nom = "";
+    public string $radioSexe = "";
+    public string $adresse = "";
+    public string $codePostal = "";
+    public string $ville = "";
+    public string $tel = "";
+    public string $mail = "";
+    public string $password = "";
+    public string $passwordRpt = "";
+
+    public string $prenom_err = "";
+    public string $nom_err = "";
+    public string $radioSexe_err = "";
+    public string $adresse_err = "";
+    public string $codePostal_err = "";
+    public string $ville_err = "";
+    public string $tel_err = "";
+    public string $mail_err = "";
+    public string $password_err = "";
+    public string $passwordRpt_err = "";
+
     /**
      * Instancie les objets dont on a besoin dans toutes nos méthodes
      */
