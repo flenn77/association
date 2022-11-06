@@ -59,7 +59,7 @@ class User extends DefaultEntity
 
     private string $statut;
 
-    private bool $verifMail;
+    private int $verifMail;
 
 /************************************************************************************************* */
 

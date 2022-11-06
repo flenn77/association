@@ -30,17 +30,15 @@ class DefaultModel extends Database {
         return $this->getData($stmt, true);
     }
 
-    /**
-     * Retourne un objet en fonction de son id
-     *
-     * @param integer $id
-     * @return object
-     */
+    public function findBy(string $key, $value): object
+    {
+        $stmt = "SELECT * FROM " . $this->table . " WHERE $key = $value"; 
+        return $this->getData($stmt, true);
+    }
+
     public function Somme(): object
     {
         $stmt = "SELECT SUM(montant) FROM " . $this->table;
         return $this->getData($stmt, true);
     }
-
-    
 }
