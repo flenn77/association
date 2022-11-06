@@ -59,6 +59,10 @@ class User extends DefaultEntity
 
     private string $statut;
 
+    private int $verifMail;
+
+/************************************************************************************************* */
+
     public function getId(): int
     {
         return $this->id;
@@ -257,6 +261,26 @@ class User extends DefaultEntity
     public function setStatut($statut)
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of verifMail
+     */ 
+    public function getVerifMail()
+    {
+        return $this->verifMail;
+    }
+
+    /**
+     * Set the value of verifMail
+     *
+     * @return  self
+     */ 
+    public function setVerifMail($verifMail)
+    {
+        $this->verifMail = $verifMail;
 
         return $this;
     }

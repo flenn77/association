@@ -1,8 +1,12 @@
 <?php
 namespace Core\Controller;
 
-class DefaultController {
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
+class DefaultController 
+{
     protected function render(string $viewPath, array $parameters = [])
     {
         // Créé une mémoire tampon

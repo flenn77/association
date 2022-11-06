@@ -36,5 +36,9 @@ class DefaultModel extends Database {
         return $this->getData($stmt, true);
     }
 
-    
+    public function Somme(): object
+    {
+        $stmt = "SELECT SUM(montant) FROM " . $this->table;
+        return $this->getData($stmt, true);
+    }
 }

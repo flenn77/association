@@ -239,19 +239,30 @@ class UserController extends DefaultController {
                 $user->setVille(htmlspecialchars($_POST['ville']));
                 $user->setTel(htmlspecialchars($_POST['tel']));
                 $user->setMail(htmlspecialchars($_POST['mail']));
+                $user->setverifMail(0);
                 $user->setPassword(htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT)));
                 // password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $user->setStatut("user");
     
                 
                 $this->model->save($user);
+
+                var_dump($_POST['mail']);
+
+                $verifMail = $this->model->findBy('nom', $_POST['nom']);
+
+                var_dump($verifMail);
     
-                $_POST = null;
-    
-                var_dump($_POST);
-    
-                header("Location: index.php?page=connexion");
-                exit();
+                // header("Location: ?page=connexion");
+
+                // $this->mail->sendMail($_POST['mail'], 
+                //     'Merci pour le don',
+                //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+                //     Nous avons recu votre don de '.$_POST['montant'].' euro(s) <br/> 
+                //     <h3>merci de votre contribution, votre geste nous aide ennormement ! *_*</h3>' 
+                // );
+
+                // exit();
             } 
 
         } else {
@@ -272,6 +283,5 @@ class UserController extends DefaultController {
         // ];
 
         // if (!empty($_POST) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['radioSexe']) && isset($_POST['adresse']) && isset($_POST['codePostal']) && isset($_POST['ville']) && isset($_POST['tel']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passwordRpt'])) {
-
     }
 }
