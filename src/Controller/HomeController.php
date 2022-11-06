@@ -15,7 +15,6 @@ final class HomeController extends DefaultController {
 
     public function home()
     {
-        $this->mail->sendMail();
         $this->render('page/home');
     }
 }

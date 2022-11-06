@@ -47,6 +47,9 @@ class Routeur {
                     case 'donation':
                         (new DonationController)->index();
                         break;
+                    case 'donFait':
+                        (new DonationController)->thxDon();
+                        break;
                     case 'reservation':
                         (new ReservationController)->index();
                         break;

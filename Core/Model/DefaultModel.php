@@ -30,5 +30,17 @@ class DefaultModel extends Database {
         return $this->getData($stmt, true);
     }
 
+    /**
+     * Retourne un objet en fonction de son id
+     *
+     * @param integer $id
+     * @return object
+     */
+    public function Somme(): object
+    {
+        $stmt = "SELECT SUM(montant) FROM " . $this->table;
+        return $this->getData($stmt, true);
+    }
+
     
 }
