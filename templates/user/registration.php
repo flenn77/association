@@ -30,16 +30,16 @@
 	<input type="text" id="inputAdresse" name="adresse" class="form-control" placeholder="Adresse" />
 	
 	<label for="inputCodePostal" class="visually-hidden">Code Postal</label>
-	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" min="0" />
+	<input type="number" id="inputCodePostal" name="codePostal" class="form-control" placeholder="Code Postal" />
 
     <label for="inputVille" class="visually-hidden">Ville</label>
 	<input type="text" id="inputVille" name="ville" class="form-control" placeholder="Ville" />
 
     <label for="inputTel" class="visually-hidden">Numéro de téléphone</label>
-	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" pattern="[0-9]{10}" />
+	<input type="tel" id="inputTel" name="tel" class="form-control" placeholder="Numéro de téléphone" />
 
     <label for="inputEmail" class="visually-hidden">Adresse mail</label>
-	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" autofocus />
+	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" />
 	
 	<label for="inputPassword" class="visually-hidden">Mot de passe</label>
 	<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" />

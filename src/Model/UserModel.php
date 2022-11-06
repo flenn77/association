@@ -15,10 +15,13 @@ class UserModel extends DefaultModel {
     protected string $table = 'user';
     protected string $entity = 'User';
 
-    public function getByEmail(string $email) 
-    {
-        $stmt = "SELECT * FROM " . $this->table . " WHERE mail = $email";
-        return $this->getData($stmt, true);
+    public function findMailDuplicate(string $bindParam) {
+        $stmt = "SELECT id FROM " . $this->table . " WHERE mail = :mail";
+        $prepare = $this->pdo->prepare($stmt);
+        $prepare->bindParam(":mail", $bindParam, \PDO::PARAM_STR);
+        $prepare->execute();
+
+        return $prepare;
     }
 
     public function save(User $user)
@@ -29,4 +32,5 @@ class UserModel extends DefaultModel {
         $prepare = $this->pdo->prepare($stmt);
         $prepare->execute($user());
     }
+
 }

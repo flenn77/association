@@ -30,5 +30,11 @@ class DefaultModel extends Database {
         return $this->getData($stmt, true);
     }
 
+    public function findBy(string $key, $value): object
+    {
+        $stmt = "SELECT * FROM " . $this->table . " WHERE $key = $value"; 
+        return $this->getData($stmt, true);
+    }
+
     
 }
