@@ -24,6 +24,15 @@ class UserModel extends DefaultModel {
         return $prepare;
     }
 
+    public function searchUser(string $bindParam) {
+        $stmt = "SELECT id, mail, password FROM " . $this->table . " WHERE mail = :mail";
+        $prepare = $this->pdo->prepare($stmt);
+        $prepare->bindParam(":mail", $bindParam, \PDO::PARAM_STR);
+        $prepare->execute();
+
+        return $prepare;
+    }
+
     public function save(User $user)
     {
         // var_dump($user());
