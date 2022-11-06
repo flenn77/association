@@ -4,11 +4,14 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Model\UserModel;
 // use App\Controller\ErrorController;
+use App\Controller\MailController;
 use Core\Controller\DefaultController;
 
 class UserController extends DefaultController {
 
     private UserModel $model;
+
+    private MailController $sendMail;
 
     public string $prenom = "";
     public string $nom = "";
@@ -38,6 +41,7 @@ class UserController extends DefaultController {
     public function __construct()
     {
         $this->model = new UserModel;
+        $this->sendMail = new MailController;
     }
 
     /**
@@ -193,23 +197,19 @@ class UserController extends DefaultController {
     
                 
                 $this->model->save($user);
-
-                var_dump($_POST['mail']);
-
-                $verifMail = $this->model->findBy('nom', $_POST['nom']);
-
-                var_dump($verifMail);
     
-                // header("Location: ?page=connexion");
+                header("Location: ?page=connexion");
 
-                // $this->mail->sendMail($_POST['mail'], 
-                //     'Merci pour le don',
-                //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
-                //     Nous avons recu votre don de '.$_POST['montant'].' euro(s) <br/> 
-                //     <h3>merci de votre contribution, votre geste nous aide ennormement ! *_*</h3>' 
-                // );
+                $this->sendMail->sendMail($_POST['mail'], 
+                    'Création compte',
+                    '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+                    <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
+                    <p><a href="https://localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
+                    <p>Cordialement,<p><br /><br />
+                    <h3>Association De A à Zebre</h3>' 
+                );
 
-                // exit();
+                exit();
             } 
 
         } else {
@@ -230,5 +230,13 @@ class UserController extends DefaultController {
         // ];
 
         // if (!empty($_POST) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['radioSexe']) && isset($_POST['adresse']) && isset($_POST['codePostal']) && isset($_POST['ville']) && isset($_POST['tel']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passwordRpt'])) {
+    }
+
+    public function verifMail(string $mailUser): void
+    {
+        $this->model->updateBy('verifMail', '1', 'mail', '"'.$mailUser.'"');
+
+        header("Location: ?page=connexion");
+        exit();
     }
 }

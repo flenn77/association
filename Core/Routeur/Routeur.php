@@ -44,6 +44,10 @@ class Routeur {
                     case 'inscription':
                         (new UserController)->register();
                         break;
+                    case 'verifmail':
+                        var_dump($_GET['mail']);
+                        (new UserController)->verifMail($_GET['mail']);
+                        break;
                     case 'donation':
                         (new DonationController)->index();
                         break;
