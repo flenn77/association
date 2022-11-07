@@ -19,7 +19,6 @@ class DonationModel extends DefaultModel
 
     public function save(Donation $donation)
     {
-        $cent = 100;
         var_dump($donation());
         $stmt = "INSERT INTO donation (nom, prenom, adresse, codePostal, ville, tel, mail, montant) 
                  VALUES (:nom, :prenom, :adresse, :codepostal, :ville, :tel, :mail, :montant)";

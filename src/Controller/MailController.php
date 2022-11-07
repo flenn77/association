@@ -34,7 +34,10 @@ class MailController extends DefaultController
             $this->mail->Username   = 'aazebre.assoc@outlook.fr';             //SMTP username
             $this->mail->Password   = 'mdp.D.M.W.Y';                          //SMTP password              
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable implicit TLS encryption
-            $this->mail->Port       = 587;  
+            $this->mail->Port       = 587;
+            
+            //Char-set
+            $this->mail->CharSet = "utf-8";
 
             //Recipients
             $this->mail->setFrom('aazebre.assoc@outlook.fr');

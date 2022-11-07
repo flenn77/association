@@ -4,11 +4,14 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Model\UserModel;
 // use App\Controller\ErrorController;
+use App\Controller\MailController;
 use Core\Controller\DefaultController;
 
 class UserController extends DefaultController {
 
     private UserModel $model;
+
+    private MailController $sendMail;
 
     public string $prenom = "";
     public string $nom = "";
@@ -39,10 +42,7 @@ class UserController extends DefaultController {
     public function __construct()
     {
         $this->model = new UserModel;
-        // $this->prenom = $this->nom = $this->radioSexe = $this->adresse = $this->codePostal = $this->ville = $this->tel = $this->mail = $this->password = $this->passwordRpt = "";
-        // $this->prenom_err = $this->nom_err = $this->radioSexe_err = $this->adresse_err = $this->codePostal_err = $this->ville_err = $this->tel_err = $this->mail_err = $this->password_err = $this->passwordRpt_err = "";
-
-        // var_dump(array($this->prenom_err, $this->nom_err,$this->radioSexe_err, $this->adresse_err,$this->codePostal_err, $this->ville_err,$this->tel_err, $this->mail_err, $this->password_err, $this->passwordRpt_err));
+        $this->sendMail = new MailController;
     }
 
     /**
@@ -106,6 +106,12 @@ class UserController extends DefaultController {
                 } else {
                     $this->login_err = "Mauvais mail ou mot de passe !";
                 }               
+            } else {
+                $this->render("user/registration", [
+                    'mail_err' => $this->mail_err,
+                    'password_err' => $this->password_err,
+                    'login_err' => $this->login_err
+                ]);
             }
 
             var_dump(array($this->mail_err, $this->password_err, $this->login_err));
@@ -116,6 +122,7 @@ class UserController extends DefaultController {
         }
     }
 
+    
     /**
      * Page affichant une catégorie en fonction de son id
      *
@@ -227,7 +234,7 @@ class UserController extends DefaultController {
                 }
             }
 
-            var_dump(array($this->prenom_err, $this->nom_err,$this->radioSexe_err, $this->adresse_err,$this->codePostal_err, $this->ville_err,$this->tel_err, $this->mail_err, $this->password_err, $this->passwordRpt_err));
+            //var_dump(array($prenom_err, $nom_err,$radioSexe_err, $adresse_err,$codePostal_err, $ville_err,$tel_err, $mail_err, $password_err, $passwordRpt_err));
 
             if (empty($this->prenom_err) && empty($this->nom_err) && empty($this->radioSexe_err) && empty($this->adresse_err) && empty($this->codePostal_err) && empty($this->ville_err) && empty($this->tel_err) && empty($this->mail_err) && empty($this->password_err) && empty($this->passwordRpt_err)) {
                 $user= new User;
@@ -246,24 +253,33 @@ class UserController extends DefaultController {
     
                 
                 $this->model->save($user);
-
-                var_dump($_POST['mail']);
-
-                $verifMail = $this->model->findBy('nom', $_POST['nom']);
-
-                var_dump($verifMail);
     
-                // header("Location: ?page=connexion");
+                header("Location: ?page=connexion");
 
-                // $this->mail->sendMail($_POST['mail'], 
-                //     'Merci pour le don',
-                //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
-                //     Nous avons recu votre don de '.$_POST['montant'].' euro(s) <br/> 
-                //     <h3>merci de votre contribution, votre geste nous aide ennormement ! *_*</h3>' 
-                // );
+                $this->sendMail->sendMail($_POST['mail'], 
+                    'Création compte',
+                    '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+                    <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
+                    <p><a href="https://localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
+                    <p>Cordialement,<p><br /><br />
+                    <h3>Association De A à Zebre</h3>' 
+                );
 
-                // exit();
-            } 
+                exit();
+            } else {
+                $this->render("user/registration", [
+                    'prenom_err' => $this->prenom_err,
+                    'nom_err' => $this->nom_err,
+                    'radioSexe_err' => $this->radioSexe_err,
+                    'adresse_err' => $this->adresse_err,
+                    'codePostal_err' => $this->codePostal_err,
+                    'ville_err' => $this->ville_err,
+                    'tel_err' => $this->tel_err,
+                    'mail_err' => $this->mail_err,
+                    'password_err' => $this->password_err,
+                    'passwordRpt_err' => $this->passwordRpt_err
+                ]);
+            }
 
         } else {
             $this->render("user/registration");
@@ -283,5 +299,13 @@ class UserController extends DefaultController {
         // ];
 
         // if (!empty($_POST) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['radioSexe']) && isset($_POST['adresse']) && isset($_POST['codePostal']) && isset($_POST['ville']) && isset($_POST['tel']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passwordRpt'])) {
+    }
+
+    public function verifMail(string $mailUser): void
+    {
+        $this->model->updateBy('verifMail', '1', 'mail', '"'.$mailUser.'"');
+
+        header("Location: ?page=connexion");
+        exit();
     }
 }
