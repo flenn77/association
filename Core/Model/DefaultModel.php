@@ -2,8 +2,9 @@
 namespace Core\Model;
 
 use Core\Database\Database;
+use Core\Model\InterfaceBDDModel;
 
-class DefaultModel extends Database {
+abstract class DefaultModel extends Database implements InterfaceBDDModel {
 
     protected string $table;
 
@@ -53,9 +54,5 @@ class DefaultModel extends Database {
         $prepare->execute();
     }
 
-    public function Somme(): object
-    {
-        $stmt = "SELECT SUM(montant) FROM " . $this->table;
-        return $this->getData($stmt, true);
-    }
+    public abstract function save(object $criteria): void;
 }

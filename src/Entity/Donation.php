@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
 
-class Donation extends DefaultEntity
+final class Donation extends DefaultEntity
 {
 
     /**

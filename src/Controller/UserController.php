@@ -7,7 +7,7 @@ use App\Model\UserModel;
 use App\Controller\MailController;
 use Core\Controller\DefaultController;
 
-class UserController extends DefaultController {
+final class UserController extends DefaultController {
 
     private UserModel $model;
 

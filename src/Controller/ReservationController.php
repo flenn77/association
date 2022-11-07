@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use Core\Controller\DefaultController;
 
-class ReservationController extends DefaultController
+final class ReservationController extends DefaultController
 {
     public function index()
     {

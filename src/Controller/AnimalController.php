@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Model\AnimalModel;
 use Core\Controller\DefaultController;
 
-class AnimalController extends DefaultController{
+final class AnimalController extends DefaultController{
 
     private AnimalModel $model;
     

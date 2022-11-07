@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Model\ProduitModel;
 use Core\Controller\DefaultController;
 
-class ProduitController extends DefaultController
+final class ProduitController extends DefaultController
 {
     private ProduitModel $model;
     

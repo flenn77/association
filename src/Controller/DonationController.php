@@ -5,7 +5,7 @@ use App\Entity\Donation;
 use App\Model\DonationModel;
 use Core\Controller\DefaultController;
 
-class DonationController extends DefaultController 
+final class DonationController extends DefaultController 
 {
     private DonationModel $model;
     private MailController $mail;

@@ -9,9 +9,3 @@ define("CSS", dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR . "src" . D
 require ROOT. "/vendor/autoload.php";
 
 (new Routeur)->pages();
-
-
-
-
-
-

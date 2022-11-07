@@ -1,7 +1,7 @@
 <?php
 namespace App\Entity;
 
-class Reservation
+final class Reservation
 {
     /**
      * Id de la reservation

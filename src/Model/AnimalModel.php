@@ -9,10 +9,12 @@ use Core\Model\DefaultModel;
  * @method array<object> findAll()
  * @method object find(int $id)
  */
-class AnimalModel extends DefaultModel{
+final class AnimalModel extends DefaultModel{
     
     protected string $table = 'animal';
     protected string $entity = 'Animal';
 
-   
+    public function save(object $criteria): void
+    {
+    }
 }

@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
+use Core\Entity\InterfaceEntity;
 
-class User extends DefaultEntity
+final class User implements InterfaceEntity
 {
 
     /**
@@ -174,7 +175,7 @@ class User extends DefaultEntity
     /**
      * Get the value of password
      */ 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -184,7 +185,7 @@ class User extends DefaultEntity
      *
      * @return  self
      */ 
-    public function setPassword($password)
+    public function setPassword($password): object
     {
         $this->password = $password;
 
@@ -209,40 +210,6 @@ class User extends DefaultEntity
         $this->sexe = $sexe;
 
         return $this;
-    }
-
-    public function hydrateUser(array $data)
-    {
-        if (isset($data['id'])) {
-            $this->id = $data['id'];
-        }
-        if (isset($data['nom'])) {
-            $this->nom = $data['nom'];
-        }
-        if (isset($data['prenom'])) {
-            $this->prenom = $data['prenom'];
-        }
-        if (isset($data['sexe'])) {
-            $this->sexe = $data['sexe'];
-        }
-        if (isset($data['adresse'])) {
-            $this->adresse = $data['adresse'];
-        }
-        if (isset($data['codePostal'])) {
-            $this->codePostal = $data['codePostal'];
-        }
-        if (isset($data['ville'])) {
-            $this->ville = $data['ville'];
-        }
-        if (isset($data['tel'])) {
-            $this->tel = $data['tel'];
-        }
-        if (isset($data['mail'])) {
-            $this->mail = $data['mail'];
-        }
-        if (isset($data['password'])) {
-            $this->password = $data['password'];
-        }
     }
 
     /**

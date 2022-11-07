@@ -10,7 +10,7 @@ use Core\Model\DefaultModel;
  * @method array<object> findAll()
  * @method object find(int $id)
  */
-class UserModel extends DefaultModel {
+final class UserModel extends DefaultModel {
     
     protected string $table = 'user';
     protected string $entity = 'User';
@@ -33,13 +33,13 @@ class UserModel extends DefaultModel {
         return $prepare;
     }
 
-    public function save(User $user)
+    public function save(object $criteria): void
     {
         // var_dump($user());
         $stmt = "INSERT INTO user (nom, prenom, sexe, adresse, codePostal, ville, tel, mail, verifMail, password, statut) 
                  VALUES (:nom, :prenom, :sexe, :adresse, :codepostal, :ville, :tel, :mail, :verifmail, :password, :statut)";
         $prepare = $this->pdo->prepare($stmt);
-        $prepare->execute($user());
+        $prepare->execute($criteria());
     }
 
 }

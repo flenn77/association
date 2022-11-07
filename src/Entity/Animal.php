@@ -1,7 +1,7 @@
 <?php
 namespace App\Entity;
 
-class Animal
+final class Animal
 {
 
     /**

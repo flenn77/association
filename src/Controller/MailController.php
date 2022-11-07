@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use Core\Controller\DefaultController;
 
-class MailController extends DefaultController
+final class MailController extends DefaultController
 {
     private PHPMailer $mail;
 

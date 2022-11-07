@@ -11,10 +11,12 @@
 	<label for="inputEmail" class="visually-hidden">Adresse mail</label>
 	<input type="email" id="inputEmail" name="mail" class="form-control" placeholder="Adresse mail" autofocus />
 	<span class="invalid-feedback"><?php  ?></span>
+	<br />
 	
 	<label for="inputPassword" class="visually-hidden">Mot de passe</label>
 	<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" />
 	<span class="invalid-feedback"><?php  ?></span>
+	<br />
 <!-- 	
 	<div class="checkbox mb-3">
 		<input type="checkbox" value="remember-me" id="checkboxRememberMe"/> 
@@ -23,5 +25,5 @@
  -->
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
 
-    <a href="">S'inscrire</a>
+    <a href="?page=inscription">S'inscrire</a>
 </form>
