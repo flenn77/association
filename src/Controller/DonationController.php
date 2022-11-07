@@ -53,12 +53,12 @@ class DonationController extends DefaultController
                 
             header("Location: ?page=donFait");
 
-            $this->mail->sendMail($_POST['mail'], 
-                'Merci pour le don',
-                '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
-                Nous avons recu votre don de '.$_POST['montant'].' euro(s) <br/> 
-                <h3>merci de votre contribution, votre geste nous aide ennormement ! *_*</h3>' 
-            );
+            // $this->mail->sendMail($_POST['mail'], 
+            //     'Merci pour le don',
+            //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+            //     Nous avons recu votre don de '.$_POST['montant'].' euro(s) <br/> 
+            //     <h3>merci de votre contribution, votre geste nous aide ennormement ! *_*</h3>' 
+            // );
 
             exit();
         } else {

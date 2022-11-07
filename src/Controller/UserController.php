@@ -249,14 +249,14 @@ class UserController extends DefaultController {
     
                 header("Location: ?page=connexion");
 
-                $this->sendMail->sendMail($_POST['mail'], 
-                    'Création compte',
-                    '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
-                    <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
-                    <p><a href="https://localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
-                    <p>Cordialement,<p><br /><br />
-                    <h3>Association De A à Zebre</h3>' 
-                );
+                // $this->sendMail->sendMail($_POST['mail'], 
+                //     'Création compte',
+                //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+                //     <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
+                //     <p><a href="https://localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
+                //     <p>Cordialement,<p><br /><br />
+                //     <h3>Association De A à Zebre</h3>' 
+                // );
 
                 exit();
             } else {
