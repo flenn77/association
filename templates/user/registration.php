@@ -44,7 +44,7 @@ use App\Controller\UserController;
 
     <label for="inputTel" class="visually-hidden">Numéro de téléphone</label>
 	<input type="tel" id="inputTel" name="tel" class="form-control <?php echo (!empty($tel_err)) ? 'is-invalid' : ''; ?>" placeholder="Numéro de téléphone" />
-    <span class="invalid-feedback"<?php echo $tel_err; ?>></span>
+    <span class="invalid-feedback"><?php echo $tel_err; ?></span>
 
     <label for="inputEmail" class="visually-hidden">Adresse mail</label>
 	<input type="email" id="inputEmail" name="mail" class="form-control <?php echo (!empty($mail_err)) ? 'is-invalid' : ''; ?>" placeholder="Adresse mail" />
