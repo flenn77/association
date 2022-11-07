@@ -5,7 +5,7 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use Core\Entity\InterfaceEntity;
 
-final class User implements InterfaceEntity
+final class User extends DefaultEntity implements InterfaceEntity
 {
 
     /**

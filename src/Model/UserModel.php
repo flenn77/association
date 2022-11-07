@@ -5,17 +5,37 @@ use App\Entity\User;
 use Core\Model\DefaultModel;
 
 /**
- * Model permettant de récupérer les catégories
+ * Model permettant de récupérer et ajouter des utilisateurs dans la BDD
  * 
- * @method array<object> findAll()
- * @method object find(int $id)
+ * @method object findMailDuplicate(string $bindParam) -> Vérifie si un mail est déjà présent dans la BDD
+ * @method void save() -> Ajoute des informations dans la BDD
+ * @method object searchUser(string $bindParam) -> Recherche un utilisateur en particulier dans la BDD
  */
 final class UserModel extends DefaultModel {
     
+    /***************************
+     * PROPRIETES DE LA CLASSE *
+     ***************************/
+
     protected string $table = 'user';
     protected string $entity = 'User';
+    
+    /*******************************************************************************************************************/
 
-    public function findMailDuplicate(string $bindParam) {
+
+
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
+
+    /**
+     * Undocumented function
+     *
+     * @param string $bindParam
+     * @return object
+     */
+    public function findMailDuplicate(string $bindParam): object 
+    {
         $stmt = "SELECT id FROM " . $this->table . " WHERE mail = :mail";
         $prepare = $this->pdo->prepare($stmt);
         $prepare->bindParam(":mail", $bindParam, \PDO::PARAM_STR);
@@ -24,7 +44,8 @@ final class UserModel extends DefaultModel {
         return $prepare;
     }
 
-    public function searchUser(string $bindParam) {
+    public function searchUser(string $bindParam): object
+    {
         $stmt = "SELECT id, mail, password FROM " . $this->table . " WHERE mail = :mail";
         $prepare = $this->pdo->prepare($stmt);
         $prepare->bindParam(":mail", $bindParam, \PDO::PARAM_STR);

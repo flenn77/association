@@ -1,8 +1,13 @@
 <?php
 namespace App\Entity;
 
-final class Animal
+use Core\Entity\DefaultEntity;
+
+final class Animal extends DefaultEntity
 {
+    /***************************
+     * PROPRIETES DE LA CLASSE *
+     ***************************/
 
     /**
      * Id de la catégory
@@ -13,128 +18,134 @@ final class Animal
     private int $id;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+     * Le surnom de l'animal
      *
      * @var string
      */
     private string $surnomAnimal;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+     * L'espece de l'animal
      *
      * @var string
      */
     private string $especeAnimal;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+     * La race de l'animal
      *
      * @var string
      */
     private string $raceAnimal;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+     * L'âge de l'animal
      *
-     * @var integer
+     * @var string
      */
     private string $ageAnimal;
 
 
-        /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+    /**
+     * La couleur de l'animal
      *
      * @var string
      */
     private string $couleurAnimal;
-        /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+    
+    /**
+     * La description de l'animal
      *
      * @var string
      */
-
     private string $descriptionAnimal;
 
 
-        /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+    /**
+     * L'image de l'animal
      *
      * @var string
      */
     private string $imageAnimal;
-        /**
-     * Nom de la catégorie
-     * UNIQUE string 65
-     *
-     * @var integer
-     */
+        
+    /**
+         * La date d'arrivée de l'animal
+         *
+         * @var string
+         */
     private string $dateArivee;
        
     
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
+     * Le statut de l'animal
      *
      * @var string
      */
     private string $statutAnimal;
 
-    
+    /*******************************************************************************************************************/
 
 
 
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
+
+    // Récuperation de la valeur du champs Id
     public function getId(): int
     {
         return $this->id;
     }
 
+    // Récuperation de la valeur du champs Surnom
     public function getSurnomAnimal(): string
     {
         return $this->surnomAnimal;
     }
 
+    // Récuperation de la valeur du champs Espece
     public function getEspeceAnimal(): string
     {
         return $this->especeAnimal;
     }
 
+    // Récuperation de la valeur du champs Race
     public function getRaceAnimal(): string
     {
         return $this->raceAnimal;
     }
 
+    // Récuperation de la valeur du champs Age
     public function getAgeAnimal(): int
     {
         return $this->ageAnimal;
     }
 
+    // Récuperation de la valeur du champs Couleur
     public function getCouleurAnimal(): string
     {
         return $this->couleurAnimal;
     }
 
+    // Récuperation de la valeur du champs Description
     public function getDescriptionAnimal(): string
     {
         return $this->descriptionAnimal;
     }
 
+    // Récuperation de la valeur du champs Image
     public function getImageAnimal(): string
     {
         return $this->imageAnimal;
     }
 
+    // Récuperation de la valeur du champs DateArivee
     public function getDateArivee(): string
     {
         return $this->dateArivee;
     }
 
+    // Récuperation de la valeur du champs StatutAnimal
     public function getStatutAnimal(): string
     {
         return $this->statutAnimal;

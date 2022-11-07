@@ -3,27 +3,55 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Model\UserModel;
-// use App\Controller\ErrorController;
+use App\Controller\ErrorController;
 use App\Controller\MailController;
 use Core\Controller\DefaultController;
 
-final class UserController extends DefaultController {
+/**
+ * Controller permettant de gérer les utilisateurs (inscription, login, verification du mail, ...)
+ * 
+ * @method void index() -> Renvoie l'utilisateur sur une page de remerciement
+ * @method void login() -> Affiche un animal en particulier
+ */
+final class UserController extends DefaultController 
+{
+    /***************************
+     * PROPRIETES DE LA CLASSE *
+     ***************************/
 
+    /**
+     * Objet contenant la class UserModel
+     *
+     * @var UserModel
+     */
     private UserModel $model;
 
+    /**
+     * Objet contenant la class MailController
+     *
+     * @var MailController
+     */
     private MailController $sendMail;
 
-    public string $prenom = "";
-    public string $nom = "";
-    public string $radioSexe = "";
-    public string $adresse = "";
-    public string $codePostal = "";
-    public string $ville = "";
-    public string $tel = "";
+    /**
+     * Variable contenant le mail de l'utilisateur
+     *
+     * @var string
+     */
     public string $mail = "";
-    public string $password = "";
-    public string $passwordRpt = "";
 
+    /**
+     * Variable contenant le mot de passe de l'utilisateur
+     *
+     * @var string
+     */
+    public string $password = "";
+
+    /**
+     * Variables contenant des messages d'erreur concernant les champs à remplir
+     *
+     * @var string
+     */
     public string $prenom_err = "";
     public string $nom_err = "";
     public string $radioSexe_err = "";
@@ -35,37 +63,42 @@ final class UserController extends DefaultController {
     public string $password_err = "";
     public string $passwordRpt_err = "";
 
+    /*******************************************************************************************************************/
+
+
+
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
+
     /**
      * Instancie les objets dont on a besoin dans toutes nos méthodes
      */
     public function __construct()
     {
+        // Instanciation de la class UserModel
         $this->model = new UserModel;
+        // Instanciation de la class MailController
         $this->sendMail = new MailController;
     }
 
     /**
-     * Page affichant toutes nos catégories
+     * Récupère et vérifie les informations du formulaire de connexion
      *
      * @return void
      */
-    public function index()
+    public function login() 
     {
-        // $categories = $this->model->findAll();
-        // require_once ROOT."/templates/User/index.php";
-        $this->render("user/index", [
-            'users' => $this->model->findAll()
-        ]);
-    }
-
-    public function login() {
+        // Détection d'une méthode POST  
         if($_SERVER["REQUEST_METHOD"] == "POST") {
+
             $this->mail = "";
             $this->password = "";
             $this->mail_err = "";
             $this->password_err = "";
             $this->login_err = "";
             
+            // Vérification du champ mail. Si faux, un message d'erreur est assigné à une variable.
             if(empty(trim($_POST["mail"]))){
                 $this->mail_err = "Entrez un email !";
             } elseif(!preg_match('/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/', trim($_POST["mail"]))){
@@ -74,13 +107,19 @@ final class UserController extends DefaultController {
                 $this->mail = trim($_POST["mail"]);
             }
 
+            // Vérification du champ password. Si faux, un message d'erreur est assigné à une variable.
             if(empty(trim($_POST["password"]))){
                 $this->password_err = "Entrez un mot de passe !";
             } else {
                 $this->password = trim($_POST["password"]);
             }
 
+            /**
+             * Vérification de l'absence d'erreur dans les champs
+             */
             if(empty($this->mail_err) && empty($this->password_err)) {
+
+                // Récupère les informations du compte à l'aide du mail 
                 $stmt = $this->model->searchUser(trim($_POST["mail"]));
 
                 if ($stmt->rowCount() == 1) {
@@ -89,14 +128,20 @@ final class UserController extends DefaultController {
                         $mailRow = $row['mail'];
                         $passwordHashRow = $row['password'];
 
+                        // Vérifie si le mot de passe correspond à celui du compte dans la BDD
                         if (password_verify($this->password,$passwordHashRow)) {
+                            // Lancement de la session
                             session_start();
 
+                            // Attribution de valeurs dans la session
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $idRow;
                             $_SESSION["mail"] = $mailRow;
 
+                            // Modification du header (Permet de réinitialiser la méthode POST)
                             header("Location: index.php");
+
+                            // Reload de la page
                             exit();
                         } else {
                             $this->login_err = "Mauvais mail ou mot de passe !";
@@ -106,130 +151,108 @@ final class UserController extends DefaultController {
                     $this->login_err = "Mauvais mail ou mot de passe !";
                 }               
             }
-
-            var_dump(array($this->mail_err, $this->password_err, $this->login_err));
-
             unset($stmt);
         } else {
+            // Affichage de la page 'user/login.php'
             $this->render("user/login");
         }
     }
 
-    
     /**
-     * Page affichant une catégorie en fonction de son id
+     * Récupère, vérifie et ajoute à la BDD les informations du formulaire d'inscription
      *
      * @return void
      */
-    public function info()
-    {
-        if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
-            $id = intval($_GET['id']);
-        }
-        $user = $this->model->find($id);
-
-        $this->render("user/detail", [
-            'users' => $user
-        ]);
-    }
-
     public function register()
     {
-        // $prenom = $nom = $radioSexe = $adresse = $codePostal = $ville = $tel = $mail = $password = $passwordRpt = "";
-        // $prenom_err = $nom_err = $radioSexe_err = $adresse_err = $codePostal_err = $ville_err = $tel_err = $mail_err = $password_err = $passwordRpt_err = "";
-
-        // Processing form data when form is submitted
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Détection d'une méthode POST  
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
-
-            // Validate prenom
-            if(empty(trim($_POST["prenom"]))){
+            // Vérification du champ prénom. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["prenom"]))){
                 $this->prenom_err = "Entrez un prénom !";
-            } elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["prenom"]))){
+            } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["prenom"]))){
                 $this->prenom_err = "Un prénom ne doit contenir que des lettres !";
-            } else {
-                $this->prenom = trim($_POST['prenom']);
-            } 
+            }
 
-            if(empty(trim($_POST["nom"]))){
+            // Vérification du champ nom. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["nom"]))){
                 $this->nom_err = "Entrez un nom !";
-            } elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["nom"]))){
+            } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["nom"]))){
                 $this->nom_err = "Un nom ne doit contenir que des lettres !";
-            } else {
-                $this->nom = trim($_POST['nom']);
             }
 
-            if(empty(trim($_POST["radioSexe"]))){
+            // Vérification du champ radioSexe. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["radioSexe"]))){
                 $this->radioSexe_err = "Choisissez votre sexe";
-            } else {
-                $this->radioSexe = trim($_POST['radioSexe']);
             }
 
-            if(empty(trim($_POST["adresse"]))){
+            // Vérification du champ adresse. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["adresse"]))){
                 $this->adresse_err = "Entrez une adresse !";
-            } elseif(!preg_match('/^[a-zA-Z0-9]+$/', trim($_POST["nom"]))){
+            } elseif (!preg_match('/^[a-zA-Z0-9]+$/', trim($_POST["nom"]))){
                 $this->adresse_err = "Une adresse ne doit contenir que des chiffres et des lettres !";
-            } else {
-                $this->adresse = trim($_POST['adresse']);
             }
 
-            if(empty(trim($_POST["codePostal"]))){
+            // Vérification du champ codePostal. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["codePostal"]))){
                 $this->codePostal_err = "Entrez un code postal !";
-            } elseif(trim($_POST["codePostal"]) < 0){
+            } elseif (trim($_POST["codePostal"]) < 0){
                 $this->codePostal_err = "Un code postal ne doit pas être inférieur à 0 !";
-            } else {
-                $this->codePostal = trim($_POST['codePostal']);
             }
 
-            if(empty(trim($_POST["ville"]))){
+            // Vérification du champ ville. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["ville"]))){
                 $this->ville_err = "Entrez une ville !";
-            } elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["ville"]))){
+            } elseif (!preg_match('/^[a-zA-Z]+$/', trim($_POST["ville"]))){
                 $this->ville_err = "Une ville ne doit contenir que des lettres !";
-            } else {
-                $this->ville = trim($_POST['ville']);
             }
 
-            if(empty(trim($_POST["tel"]))){
+            // Vérification du champ tel. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["tel"]))){
                 $this->tel_err = "Entrez un numéro de téléphone !";
-            } elseif(!preg_match('/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/', trim($_POST["tel"]))){
+            } elseif (!preg_match('/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/', trim($_POST["tel"]))){
                 $this->tel_err = 'Votre numéro de téléphone doit être au bon format !';
-            } else {
-                $this->tel = trim($_POST['tel']);
             }
             
-            if(empty(trim($_POST["mail"]))){
+            // Vérification du champ mail. Si faux, un message d'erreur est assigné à une variable.
+            // Vérifie en plus si le mail est déjà présent dans la BDD (si oui, renvoie une erreur)
+            if (empty(trim($_POST["mail"]))){
                 $this->mail_err = "Entrez un email !";
-            } elseif(!preg_match('/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/', trim($_POST["mail"]))){
+            } elseif (!preg_match('/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/', trim($_POST["mail"]))){
                 $this->mail_err = 'Votre email doit être au bon format !';
             } else {
                 $stmt = $this->model->findMailDuplicate(trim($_POST["mail"]));
                 if ($stmt->rowCount() == 1) {
                     $this->mail_err = 'Cette email a déjà été utilisé !';
-                } else {
-                    $this->mail = trim($_POST["mail"]);
                 }
-
                 unset($stmt);
             }
 
-            if(empty(trim($_POST["password"]))){
+            // Vérification du champ password. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["password"]))){
                 $this->password_err = "Entrez un mot de passe !";
-            } else {
-                $this->password = trim($_POST["password"]);
             }
             
-            if(empty(trim($_POST["passwordRpt"]))){
+            // Vérification du champ de confirmation du mot de passe. Si faux, un message d'erreur est assigné à une variable.
+            if (empty(trim($_POST["passwordRpt"]))){
                 $this->passwordRpt_err = "Confirmez votre mot de passe !";
             } else {
                 $this->passwordRpt = trim($_POST["passwordRpt"]);
-                if (empty($password_err) && ($this->password != $this->passwordRpt)) {
+                if (empty($password_err) && (trim($_POST["password"]) != $this->passwordRpt)) {
                     $this->passwordRpt_err = "Les mots de passe ne correspondent pas !";
                 }
             }
 
-            //var_dump(array($prenom_err, $nom_err,$radioSexe_err, $adresse_err,$codePostal_err, $ville_err,$tel_err, $mail_err, $password_err, $passwordRpt_err));
 
+            /**
+             * Vérification de l'absence d'erreur dans les champs
+             */
             if (empty($this->prenom_err) && empty($this->nom_err) && empty($this->radioSexe_err) && empty($this->adresse_err) && empty($this->codePostal_err) && empty($this->ville_err) && empty($this->tel_err) && empty($this->mail_err) && empty($this->password_err) && empty($this->passwordRpt_err)) {
+                
+                /**
+                 * Attribution des informations renseigné par l'utilisateur avec la méthode POST dans l'objet $user
+                 */
                 $user= new User;
                 $user->setPrenom(htmlspecialchars($_POST['prenom']));
                 $user->setNom(htmlspecialchars($_POST['nom']));
@@ -241,25 +264,30 @@ final class UserController extends DefaultController {
                 $user->setMail(htmlspecialchars($_POST['mail']));
                 $user->setverifMail(0);
                 $user->setPassword(htmlspecialchars(password_hash($_POST['password'], PASSWORD_DEFAULT)));
-                // password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $user->setStatut("user");
     
-                
+                // Ajout des informations concernant le don dans la BDD 
                 $this->model->save($user);
     
+                // Modification du header (Permet de réinitialiser la méthode POST)
                 header("Location: ?page=connexion");
 
-                // $this->sendMail->sendMail($_POST['mail'], 
-                //     'Création compte',
-                //     '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
-                //     <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
-                //     <p><a href="https://localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
-                //     <p>Cordialement,<p><br /><br />
-                //     <h3>Association De A à Zebre</h3>' 
-                // );
+                /**
+                 * Envoi d'un mail de remerciement à l'adresse mail renseigné par le donnateur
+                 */
+                $this->sendMail->sendMail($_POST['mail'], 
+                    'Création compte',
+                    '<h1>Bonjour '.$_POST['prenom'].'</h1><br/> 
+                    <p>Votre compte à été crée avec succès ! Pour pouvoir y accéder, cliquez sur ce lien : </p><br/>
+                    <p><a href="localhost/association/?page=verifmail&mail='. $_POST['mail'] .'">Vérifier votre email</a></p><br />
+                    <p>Cordialement,<p><br /><br />
+                    <h3>Association De A à Zebre</h3>' 
+                );
 
+                // Reload de la page
                 exit();
             } else {
+                // Affichage de la page 'user/registration.php' avec des données d'erreur contenues dans un array
                 $this->render("user/registration", [
                     'prenom_err' => $this->prenom_err,
                     'nom_err' => $this->nom_err,
@@ -275,30 +303,61 @@ final class UserController extends DefaultController {
             }
 
         } else {
+            // Affichage de la page 'user/registration.php'
             $this->render("user/registration");
         }
-
-        // $data = [
-        //     'prenom' => trim($_POST['prenom']),
-        //     'nom' => trim($_POST['nom']),
-        //     'radioSexe' => trim($_POST['prenom']),
-        //     'adresse' => trim($_POST['adresse']),
-        //     'codePostal' => trim($_POST['codePostal']),
-        //     'ville' => trim($_POST['ville']),
-        //     'tel' => trim($_POST['tel']),
-        //     'mail' => trim($_POST['mail']),
-        //     'password' => trim($_POST['password']),
-        //     'passwordRpt' => trim($_POST['passwordRpt']),
-        // ];
-
-        // if (!empty($_POST) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['radioSexe']) && isset($_POST['adresse']) && isset($_POST['codePostal']) && isset($_POST['ville']) && isset($_POST['tel']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['passwordRpt'])) {
     }
 
+    /**
+     * Modifie la BDD d'un utilisateur pour indiquer que son mail à été vérifié
+     *
+     * @param string $mailUser -> mail du compte qui doit êtrre vérifié
+     * @return void
+     */
     public function verifMail(string $mailUser): void
     {
         $this->model->updateBy('verifMail', '1', 'mail', '"'.$mailUser.'"');
 
+        // Modification du header (Permet de réinitialiser la méthode POST)
         header("Location: ?page=connexion");
+
+        // Reload de la page
         exit();
     }
+
+    // /**
+    //  * Page affichant toutes nos catégories
+    //  *
+    //  * @return void
+    //  */
+    // public function index()
+    // {
+    //     // Affichage de la page 'user/index.php' avec des données contenues dans un array
+    //     $this->render("user/index", [
+    //         'users' => $this->model->findAll()
+    //     ]);
+    // }
+
+    // /**
+    //  * Page affichant une catégorie en fonction de son id
+    //  *
+    //  * @return void
+    //  */
+    // public function info()
+    // {
+    //     // Détecte si une variable id est présent dans l'URL et si elle possède une valeur
+    //     if (isset($_GET['id']) && preg_match("(\d+)", $_GET['id'])) {
+
+    //         // Assigne la valeur de l'id dans l'URL à une variable
+    //         $id = intval($_GET['id']);
+    //     }
+
+    //     // Récupère les infos de l'utilisateur qui correspond à l'Id et le stocke dans une variable
+    //     $user = $this->model->find($id);
+
+    //     // Affichage de la page 'user/detail.php' avec des données contenues dans un array
+    //     $this->render("user/detail", [
+    //         'users' => $user
+    //     ]);
+    // }
 }

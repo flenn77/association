@@ -6,81 +6,107 @@ use Core\Entity\DefaultEntity;
 
 final class Donation extends DefaultEntity
 {
+    /***************************
+     * PROPRIETES DE LA CLASSE *
+     ***************************/
 
     /**
-     * Id de la catégory
-     * Il doit être PRIMARY KEY NOT NULL
-     *
+     * Id du Don
      * @var integer
      */
     private int $id;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
-     *
+     * Nom du Donateur
      * @var string
      */
     private string $nom;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
-     *
+     * Prénom du Donateur
      * @var string
      */
     private string $prenom;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
-     *
+     * Adresse du Donateur
      * @var string
      */
     private string $adresse;
 
     /**
-     * Nom de la catégorie
-     * UNIQUE string 65
-     *
+     * Code postal du Donateur
      * @var integer
      */
     private int $codePostal;
 
+    /**
+     * ville du Doanteur
+     *
+     * @var string
+     */
     private string $ville;
 
+    /**
+     * Numéro de téléphone du Donateur
+     *
+     * @var string
+     */
     private string $tel;
 
+    /**
+     * Mail du Donateur
+     *
+     * @var string
+     */
     private string $mail;
 
+    /**
+     * Montant du Don
+     *
+     * @var integer
+     */
     private int $montant;
 
+    /*******************************************************************************************************************/
 
+
+
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
+
+    // Récuperation de la valeur du champs Id
     public function getId(): int
     {
         return $this->id;
     }
 
+    // Récuperation de la valeur du champs Nom
     public function getNom(): string
     {
         return $this->nom;
     }
 
+    // Récuperation de la valeur du champs Prénom
     public function getPrenom(): string
     {
         return $this->prenom;
     }
 
+    // Récuperation de la valeur du champs Adresse
     public function getAdresse(): string
     {
         return $this->adresse;
     }
 
+    // Récuperation de la valeur du champs CodePostal
     public function getCodePostal(): int
     {
         return $this->codePostal;
     }
 
+    // Attribution de valeur au champs Nom
     public function setNom(string $nom)
     {
         $this->nom = $nom;
@@ -88,25 +114,26 @@ final class Donation extends DefaultEntity
         return $this;
     }
 
+    // Attribution de valeur au champs Prenom
     public function setPrenom(string $prenom)
     {
         $this->prenom = $prenom;
     }
 
+    // Attribution de valeur au champs Adresse
     public function setAdresse(string $adresse)
     {
         $this->adresse = $adresse;
     }
 
+    // Attribution de valeur au champs codePostal
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
     }
 
 
-    /**
-     * Get the value of ville
-     */
+    // Récuperation de la valeur du champs Ville
     public function getVille()
     {
         return $this->ville;
@@ -124,9 +151,7 @@ final class Donation extends DefaultEntity
         return $this;
     }
 
-    /**
-     * Get the value of mail
-     */
+    // Récuperation de la valeur du champs Mail
     public function getMail()
     {
         return $this->mail;
@@ -145,9 +170,7 @@ final class Donation extends DefaultEntity
     }
 
 
-    /**
-     * Get the value of montant
-     */
+    // Récuperation de la valeur du champs Montant
     public function getMontant()
     {
         return $this->montant;
@@ -166,41 +189,39 @@ final class Donation extends DefaultEntity
     }
 
     
-    public function hydrateUser(array $data)
-    {
-        if (isset($data['id'])) {
-            $this->id = $data['id'];
-        }
-        if (isset($data['nom'])) {
-            $this->nom = $data['nom'];
-        }
-        if (isset($data['prenom'])) {
-            $this->prenom = $data['prenom'];
-        }        
-        if (isset($data['adresse'])) {
-            $this->adresse = $data['adresse'];
-        }
-        if (isset($data['codePostal'])) {
-            $this->codePostal = $data['codePostal'];
-        }
-        if (isset($data['ville'])) {
-            $this->ville = $data['ville'];
-        }
-        if (isset($data['tel'])) {
-            $this->tel = $data['tel'];
-        }
-        if (isset($data['mail'])) {
-            $this->mail = $data['mail'];
-        }
-        if (isset($data['montant'])) {
-            $this->montant = $data['montant'];
-        }
+    // public function hydrateUser(array $data)
+    // {
+    //     if (isset($data['id'])) {
+    //         $this->id = $data['id'];
+    //     }
+    //     if (isset($data['nom'])) {
+    //         $this->nom = $data['nom'];
+    //     }
+    //     if (isset($data['prenom'])) {
+    //         $this->prenom = $data['prenom'];
+    //     }        
+    //     if (isset($data['adresse'])) {
+    //         $this->adresse = $data['adresse'];
+    //     }
+    //     if (isset($data['codePostal'])) {
+    //         $this->codePostal = $data['codePostal'];
+    //     }
+    //     if (isset($data['ville'])) {
+    //         $this->ville = $data['ville'];
+    //     }
+    //     if (isset($data['tel'])) {
+    //         $this->tel = $data['tel'];
+    //     }
+    //     if (isset($data['mail'])) {
+    //         $this->mail = $data['mail'];
+    //     }
+    //     if (isset($data['montant'])) {
+    //         $this->montant = $data['montant'];
+    //     }
         
-    }
+    // }
 
-    /**
-     * Get the value of tel
-     */ 
+    // Récuperation de la valeur du champs Tel
     public function getTel()
     {
         return $this->tel;

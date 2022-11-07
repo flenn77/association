@@ -1,13 +1,12 @@
 <?php
 namespace App\Entity;
 
-final class Produit 
-{
+use Core\Entity\DefaultEntity;
 
+final class Produit extends DefaultEntity
+{
     /**
      * Id du Produit
-     * Il doit être PRIMARY KEY NOT NULL
-     *
      * @var integer
      */
     private int $id;

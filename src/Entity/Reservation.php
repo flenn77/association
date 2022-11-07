@@ -1,8 +1,14 @@
 <?php
 namespace App\Entity;
 
-final class Reservation
+use Core\Entity\DefaultEntity;
+
+final class Reservation extends DefaultEntity
 {
+    /***************************
+     * PROPRIETES DE LA CLASSE *
+     ***************************/
+
     /**
      * Id de la reservation
      * Il doit être PRIMARY KEY NOT NULL
@@ -11,7 +17,13 @@ final class Reservation
      */
     private int $id;
 
-/**************************************************************** */
+    /*******************************************************************************************************************/
+
+
+
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
 
     /**
      * Get il doit être PRIMARY KEY NOT NULL

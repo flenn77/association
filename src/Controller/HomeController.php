@@ -1,20 +1,27 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\MailController;
 use Core\Controller\DefaultController;
 
-final class HomeController extends DefaultController {
+/**
+ * Controller permettant d'afficher la page d'accueil
+ * 
+ * @method void home() -> Renvoie l'utilisateur sur la page d'accueil
+ */
+final class HomeController extends DefaultController 
+{
+    /*************************
+     * METHODES DE LA CLASSE *
+     *************************/
 
-    private MailController $mail;
-
-    public function __construct()
-    {
-        $this->mail = new MailController;
-    }
-
+     /**
+      * Renvoie l'utilisateur sur la page d'accueil
+      *
+      * @return void
+      */
     public function home()
     {
+        // Affichage de la page 'page/home.php'
         $this->render('page/home');
     }
 }
